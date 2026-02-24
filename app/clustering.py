@@ -5,7 +5,6 @@ from sklearn.decomposition import PCA
 import seaborn as sns
 from sklearn.metrics import silhouette_score
 
-
 def perform_clustering(df):
 
     features = [
@@ -40,8 +39,19 @@ def perform_clustering(df):
     # 🔥 Silhouette Score
     score = silhouette_score(X_scaled, df['Cluster'])
     print("\nSilhouette Score:", round(score, 4))
+    
+    import joblib
+    import os
+
+    # Ensure model folder exists
+    os.makedirs("model", exist_ok=True)
+
+    # Save trained model and scaler
+    joblib.dump(kmeans, "model/kmeans.pkl")
+    joblib.dump(scaler, "model/scaler.pkl")
 
     return df
+
 
 def interpret_clusters(df):
 

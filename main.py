@@ -39,5 +39,18 @@ def main():
     print(clustered_df['BehaviorType'].value_counts())
 
 
+from app.predict import predict_user, cluster_to_label
+
+cluster = predict_user(
+    screen_time=300,
+    unlocks=80,
+    notifications=120,
+    social_time=150,
+    utility_time=60,
+    entertainment_time=90
+)
+
+print("Predicted Behavior:", cluster_to_label(cluster))
+
 if __name__ == "__main__":
     main()

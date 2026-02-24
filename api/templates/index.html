@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Wellbeing Dashboard</title>
+    <style>
+        body {
+            background-color: #0f1117;
+            color: white;
+            font-family: Arial;
+            padding: 40px;
+        }
+        .card {
+            background: #1c1f26;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #3a86ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🧠 Digital Wellbeing Dashboard</h1>
+
+<div class="card">
+    <form method="post" action="/analyze">
+        <input type="number" name="screen_time" placeholder="Screen Time (min)" required>
+        <input type="number" name="unlocks" placeholder="Unlocks" required>
+        <input type="number" name="notifications" placeholder="Notifications" required>
+        <input type="number" name="social" placeholder="Social Time" required>
+        <input type="number" name="utility" placeholder="Utility Time" required>
+        <input type="number" name="entertainment" placeholder="Entertainment Time" required>
+        <br>
+        <button type="submit">Analyze</button>
+    </form>
+</div>
+
+{% if behavior %}
+
+<div class="card">
+    <h2>Behavior: {{ behavior }}</h2>
+    <h3>Risk Score: {{ risk_score }}/100</h3>
+</div>
+
+<div class="card">
+    {{ chart|safe }}
+</div>
+
+{% endif %}
+
+</body>
+</html>
