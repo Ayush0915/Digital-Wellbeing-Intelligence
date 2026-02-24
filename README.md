@@ -6,7 +6,7 @@ A multi-user behavioral analytics system that segments smartphone users into dig
 
 ## 🚀 Project Overview
 
-This project analyzes multi-user smartphone activity logs and applies behavioral feature engineering with KMeans clustering to identify digital engagement patterns.
+This project analyzes multi-user smartp hone activity logs and applies behavioral feature engineering with KMeans clustering to identify digital engagement patterns.
 
 Users are segmented into:
 

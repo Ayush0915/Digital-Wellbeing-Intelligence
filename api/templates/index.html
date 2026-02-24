@@ -1,61 +1,178 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Digital Wellbeing Dashboard</title>
+    <title>Digital Wellbeing Intelligence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-color: #0f1117;
-            color: white;
-            font-family: Arial;
+            background-color: #f5f5f7;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
             padding: 40px;
+            color: #1d1d1f;
         }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
         .card {
-            background: #1c1f26;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
         }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .metric {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .label {
+            font-size: 14px;
+            color: #6e6e73;
+            margin-top: 5px;
+        }
+
         input {
-            padding: 8px;
-            margin: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #d2d2d7;
+            width: 100%;
         }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
         button {
-            padding: 10px 20px;
-            background-color: #3a86ff;
-            color: white;
+            margin-top: 15px;
+            padding: 12px 25px;
+            border-radius: 12px;
             border: none;
-            border-radius: 6px;
+            background-color: #0071e3;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        .insight {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #3a3a3c;
         }
     </style>
 </head>
 <body>
 
-<h1>🧠 Digital Wellbeing Dashboard</h1>
+<h1>🧠 Digital Wellbeing Intelligence</h1>
 
 <div class="card">
     <form method="post" action="/analyze">
-        <input type="number" name="screen_time" placeholder="Screen Time (min)" required>
-        <input type="number" name="unlocks" placeholder="Unlocks" required>
-        <input type="number" name="notifications" placeholder="Notifications" required>
-        <input type="number" name="social" placeholder="Social Time" required>
-        <input type="number" name="utility" placeholder="Utility Time" required>
-        <input type="number" name="entertainment" placeholder="Entertainment Time" required>
-        <br>
+        <div class="input-grid">
+            <input type="number" name="screen_time" placeholder="Screen Time (min)" required>
+            <input type="number" name="unlocks" placeholder="Unlocks" required>
+            <input type="number" name="notifications" placeholder="Notifications" required>
+            <input type="number" name="social" placeholder="Social Time" required>
+            <input type="number" name="utility" placeholder="Utility Time" required>
+            <input type="number" name="entertainment" placeholder="Entertainment Time" required>
+        </div>
         <button type="submit">Analyze</button>
     </form>
 </div>
 
 {% if behavior %}
 
-<div class="card">
-    <h2>Behavior: {{ behavior }}</h2>
-    <h3>Risk Score: {{ risk_score }}/100</h3>
+<div class="grid-4">
+    <div class="card">
+    <div style="
+        display:inline-block;
+        padding:8px 16px;
+        border-radius:20px;
+        font-weight:600;
+        background-color: {{ badge_color }}20;
+        color: {{ badge_color }};
+        font-size:16px;
+    ">
+        {{ badge_label }}
+    </div>
+    <div class="label" style="margin-top:10px;">Behavior Classification</div>
+</div>
+    <div class="card">
+        <div class="metric">{{ risk_score }}/100</div>
+        <div class="label">Risk Score</div>
+    </div>
+    <div class="card">
+        <div class="metric">{{ productivity_score }}/100</div>
+        <div class="label">Productivity Score</div>
+    </div>
+    <div class="card">
+        <div class="metric">{{ total_time }} min</div>
+        <div class="label">Total Screen Time</div>
+    </div>
+</div>
+
+<!-- Charts Section -->
+<div style="
+    margin-top:50px;
+    display:flex;
+    gap:40px;
+    justify-content:center;
+    align-items:stretch;
+    flex-wrap:wrap;
+">
+
+    <!-- Productivity Gauge -->
+    <div style="
+        flex:1;
+        min-width:420px;
+        max-width:600px;
+        background:#111827;
+        padding:25px;
+        border-radius:16px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    ">
+        {{ gauge_chart | safe }}
+    </div>
+
+    <!-- Behavioral Radar -->
+    <div style="
+        flex:1;
+        min-width:420px;
+        max-width:600px;
+        background:#111827;
+        padding:25px;
+        border-radius:16px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.4);
+    ">
+        {{ radar_chart | safe }}
+    </div>
+
 </div>
 
 <div class="card">
-    {{ chart|safe }}
+    <h3 style="margin-bottom:15px;">Behavioral Insights</h3>
+    <ul style="padding-left:20px; line-height:1.8;">
+        {% for point in insight %}
+            <li>{{ point }}</li>
+        {% endfor %}
+    </ul>
 </div>
-
 {% endif %}
 
 </body>
