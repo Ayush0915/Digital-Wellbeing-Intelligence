@@ -1,56 +1,114 @@
-# 🧠 DW – Digital Wellbeing Behavioral Intelligence System
+# 🧠 Digital Wellbeing Intelligence System (DWIS)
 
-A multi-user behavioral analytics system that segments smartphone users into digital wellbeing archetypes using unsupervised learning.
+A production-ready Machine Learning web application that analyzes digital behavior patterns and generates actionable productivity insights using clustering and behavioral analytics.
 
 ---
 
-## 🚀 Project Overview
+## 🚀 What This Project Does
 
-This project analyzes multi-user smartp hone activity logs and applies behavioral feature engineering with KMeans clustering to identify digital engagement patterns.
+This system transforms daily screen activity metrics into meaningful digital wellbeing intelligence.
 
-Users are segmented into:
+It:
 
-- 🎯 Balanced Productive Users
-- 🚨 Distracted Users
-- 📱 High Engagement Users
+- Segments users using **K-Means clustering**
+- Calculates a **Productivity Score (0–100)**
+- Calculates a **Digital Risk Score**
+- Generates intelligent behavioral insights
+- Displays interactive analytics using Plotly
+- Runs on a FastAPI production backend
 
-Cluster validation is performed using:
-- Elbow Method
-- Silhouette Score
+---
+
+## 🧠 Machine Learning Approach
+
+### ✔ Feature Engineering
+Derived behavioral metrics such as:
+- Interaction rate  
+- Productivity ratio  
+- Notification density  
+- Unlock intensity  
+
+### ✔ Standardization
+Used `StandardScaler` to normalize features before clustering.
+
+### ✔ K-Means Clustering
+Unsupervised model used to segment users into:
+
+- 🟢 Productive  
+- 🟡 Balanced  
+- 🔴 Distracted  
+
+Models are persisted using `joblib` and loaded in production.
+
+---
+
+## 📊 Dashboard Features
+
+Built using **FastAPI + Jinja2 + Plotly**:
+
+- Behavior Status Badge  
+- Productivity Gauge Visualization  
+- Behavioral Radar Chart  
+- AI-style Insight Generator  
+- Clean minimal Apple-style UI  
+
+---
+
+## 🤖 Insight Engine
+
+Designed a rule-based behavioral intelligence system that:
+
+- Detects distraction patterns  
+- Identifies attention fragmentation  
+- Analyzes social usage dominance  
+- Suggests measurable optimization strategies  
+
+Example Insight:
+
+> Reducing social usage by 30 minutes daily could significantly improve productivity score.
 
 ---
 
 ## 🛠 Tech Stack
 
-- Python
-- Pandas
-- Scikit-learn
-- Matplotlib
-- Seaborn
+**Backend**
+- FastAPI  
+- Uvicorn  
+
+**Machine Learning**
+- Scikit-learn  
+- NumPy  
+- Pandas  
+- Joblib  
+
+**Visualization**
+- Plotly  
+
+**Deployment**
+- Render (Production-ready)
 
 ---
 
-## 🧠 ML Pipeline
-
-1. Data aggregation per user
-2. Behavioral feature engineering
-3. Standardization (StandardScaler)
-4. KMeans clustering
-5. Cluster validation
-6. Behavioral interpretation
-
----
-
-## 📊 Results
-
-- 3 distinct behavioral segments identified
-- Silhouette Score ≈ 0.28
-- Balanced cluster distribution
-
----
-
-## ▶️ How to Run
+## 📂 Project Structure
 
 ```bash
-pip install -r requirements.txt
-python main.py
+DW-Digital-Wellbeing/
+│
+├── api/
+├── app/
+├── model/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🎯 Key Highlights
+
+✔ End-to-end ML pipeline  
+✔ Unsupervised behavioral segmentation  
+✔ Custom productivity scoring model  
+✔ AI-style rule-based recommendation engine  
+✔ Interactive deployed dashboard  
+
+---
